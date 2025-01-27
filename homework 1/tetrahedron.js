@@ -1,14 +1,16 @@
 // Import three.js
 import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threejs/r132/build/three.module.js';
 
+// Import orbit controls
+import {OrbitControls} from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/OrbitControls.js';
+
 // Setup camera
 const renderer = new THREE.WebGLRenderer({alpha: true});
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 500);
-// Tweaked camera angle to better display the tetrahedron
-camera.position.set(-50, 50, 100);
+camera.position.set(0, 0, 100);
 camera.lookAt(0, 0, 0);
 
 const scene = new THREE.Scene();
@@ -45,5 +47,11 @@ function makeTetrahedron(p1, p2, p3, p4) {
 //makeTriangle([-10, 0, 0], [0, 5, 5], [10, 0, 0])
 makeTetrahedron([-20, 0, 0], [0, 20, 20], [20, 0, 0], [0, 0, 20]);
 
-// Render the scene
-renderer.render(scene, camera);
+// Set up animation
+var animate = function () {
+	requestAnimationFrame(animate);
+	renderer.render(scene, camera);
+};
+
+var controls = new OrbitControls (camera, renderer.domElement);
+animate();
