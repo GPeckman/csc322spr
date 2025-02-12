@@ -28,7 +28,7 @@ const scene = new THREE.Scene();
 const material = new THREE.LineBasicMaterial({ color: 0xff0000 });
 const points = [];
 const segments = 100;  // Number of segments to approximate the curve
-const scalefactor = 2;
+const scalefactor = 20;
 
 /* 
 Original equation: (x^2 + y^2)^2 - 4(x^2 - y^2) = 0
